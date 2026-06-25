@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #f9f8f6;
+  color: #1a1a1a;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.demo {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 64px 24px 120px;
+}
+
+header {
+  margin-bottom: 64px;
+  border-bottom: 1px solid #e0ddd8;
+  padding-bottom: 40px;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: #0a0a0a;
+}
+
+.lead {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.5;
+}
+
+kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  background: #eeecea;
+  border: 1px solid #d0cdc8;
+  border-radius: 3px;
+  color: #333;
+}
+
+section {
+  margin-bottom: 56px;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #111;
+}
+
+.sub {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6366f1;
+  margin-bottom: 16px;
+}
+
+.body-text {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.7;
+}
+
+ul {
+  margin-top: 12px;
+  padding-left: 20px;
+  color: #444;
+}
+
+ul li { margin-bottom: 4px; }
+
+pre {
+  background: #1e1e2e;
+  border-radius: 6px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+code {
+  font-family: 'Fira Code', monospace;
+  font-size: 13.5px;
+  color: #cdd6f4;
+  line-height: 1.6;
+}
+
+.weight-grid {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.weight-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  font-size: 18px;
+  color: #222;
+}
+
+.weight-label {
+  font-size: 11px;
+  font-weight: 400;
+  color: #999;
+  width: 32px;
+  flex-shrink: 0;
+  font-family: 'Fira Code', monospace;
+}
