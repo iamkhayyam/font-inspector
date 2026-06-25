@@ -1,0 +1,143 @@
+var h = Object.defineProperty;
+var g = (o, t, e) => t in o ? h(o, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : o[t] = e;
+var n = (o, t, e) => g(o, typeof t != "symbol" ? t + "" : t, e);
+import { D as b, r as m } from "./core-DRcKuA-l.js";
+const f = '<a href="https://knowware.institute" target="_blank" rel="noopener" tabindex="-1" style="font-size:8px;color:rgba(255,255,255,0.18);text-decoration:none;font-family:ui-monospace,monospace;letter-spacing:.06em;pointer-events:auto">Knowware</a>';
+class w {
+  constructor(t = {}) {
+    n(this, "active", !1);
+    n(this, "opts");
+    n(this, "btn");
+    n(this, "hl");
+    n(this, "tip");
+    n(this, "_onKey", (t) => {
+      t.shiftKey && t.key === "F" && this.toggle();
+    });
+    n(this, "_onMove", (t) => {
+      const e = t.target;
+      if (!e || this.tip.contains(e) || e === this.btn) return;
+      const s = m(e, this.opts.tokenMap);
+      this._drawHl(s), this._drawTip(s, t.clientX, t.clientY);
+    });
+    this.opts = {
+      tokenMap: t.tokenMap ?? {},
+      colors: t.colors ?? { ...b },
+      shortcutLabel: t.shortcutLabel ?? "Shift+F"
+    }, this.btn = this._mkBtn(), this.hl = this._mkHl(), this.tip = this._mkTip(), document.body.append(this.btn, this.hl, this.tip), this.btn.addEventListener("click", () => this.toggle()), window.addEventListener("keydown", this._onKey);
+  }
+  toggle() {
+    this.active = !this.active;
+    const { accent: t } = this.opts.colors;
+    this.active ? (document.addEventListener("mousemove", this._onMove, { passive: !0 }), Object.assign(this.btn.style, { background: t, color: "#fff", borderColor: t })) : (document.removeEventListener("mousemove", this._onMove), this.hl.style.display = "none", this.tip.style.display = "none", Object.assign(this.btn.style, {
+      background: "rgba(245,245,248,0.93)",
+      color: "rgba(80,80,100,0.5)",
+      borderColor: "rgba(120,120,140,0.3)"
+    }));
+  }
+  destroy() {
+    window.removeEventListener("keydown", this._onKey), document.removeEventListener("mousemove", this._onMove), this.btn.remove(), this.hl.remove(), this.tip.remove();
+  }
+  _mkBtn() {
+    const t = document.createElement("button");
+    return Object.assign(t.style, {
+      position: "fixed",
+      bottom: "14px",
+      left: "14px",
+      zIndex: "2147483647",
+      width: "34px",
+      height: "34px",
+      boxSizing: "border-box",
+      padding: "0",
+      border: "1.5px solid rgba(120,120,140,0.3)",
+      background: "rgba(245,245,248,0.93)",
+      color: "rgba(80,80,100,0.5)",
+      fontSize: "11px",
+      fontFamily: "ui-monospace,monospace",
+      fontWeight: "700",
+      lineHeight: "1",
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      backdropFilter: "blur(8px)",
+      borderRadius: "3px",
+      letterSpacing: "0.04em",
+      userSelect: "none",
+      transition: "border-color .12s,background .12s,color .12s"
+    }), t.textContent = "Aa", t.title = `Font Inspector · ${this.opts.shortcutLabel}`, t;
+  }
+  _mkHl() {
+    const t = document.createElement("div");
+    return Object.assign(t.style, {
+      position: "fixed",
+      zIndex: "2147483646",
+      pointerEvents: "none",
+      display: "none",
+      boxSizing: "border-box"
+    }), t;
+  }
+  _mkTip() {
+    const t = document.createElement("div");
+    return Object.assign(t.style, {
+      position: "fixed",
+      zIndex: "2147483647",
+      display: "none",
+      background: this.opts.colors.bg,
+      border: "1px solid rgba(255,255,255,0.1)",
+      borderLeft: `3px solid ${this.opts.colors.accent}`,
+      padding: "10px 14px 8px",
+      width: "270px",
+      boxSizing: "border-box",
+      borderRadius: "0 3px 3px 0",
+      fontFamily: "ui-sans-serif,system-ui,sans-serif",
+      pointerEvents: "none"
+    }), t;
+  }
+  _drawHl(t) {
+    const { rect: e } = t, p = !!this.opts.tokenMap[t.family] ? this.opts.colors.accent : "rgba(255,107,0,0.5)";
+    Object.assign(this.hl.style, {
+      display: "block",
+      top: `${e.top}px`,
+      left: `${e.left}px`,
+      width: `${e.width}px`,
+      height: `${e.height}px`,
+      outline: `2px solid ${p}`,
+      outlineOffset: "2px",
+      background: `${p}18`
+    });
+  }
+  _drawTip(t, e, s) {
+    const a = e + 18 + 270 > window.innerWidth ? e - 270 - 10 : e + 18, c = s + 18 + 148 > window.innerHeight ? s - 148 - 10 : s + 18, r = this.opts.colors.accent, d = !!this.opts.tokenMap[t.family] ? r : "rgba(255,107,0,0.4)";
+    Object.assign(this.tip.style, {
+      display: "block",
+      top: `${c}px`,
+      left: `${a}px`,
+      borderLeftColor: r
+    }), this.tip.innerHTML = `
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <span style="font-size:9px;font-weight:700;background:${d};color:#fff;padding:2px 6px;border-radius:2px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap">${i(t.token)}</span>
+        <span style="font-size:12px;color:rgba(255,255,255,0.65);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${i(t.family)}</span>
+      </div>
+      ${t.role ? `<div style="font-size:9px;color:${r}cc;letter-spacing:.06em;margin-bottom:8px">${i(t.role)}</div>` : ""}
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 10px;margin-bottom:8px">
+        ${l(r, "weight", `${t.weight}<span style="color:rgba(255,255,255,0.45);margin-left:4px">${i(t.weightName)}</span>`)}
+        ${l(r, "style", i(t.style))}
+        ${l(r, "size / lh", `${i(t.size)}<span style="color:rgba(255,255,255,0.3);margin:0 3px">·</span>${i(t.lineHeight)}`)}
+      </div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.22);font-family:ui-monospace,monospace;border-top:1px solid rgba(255,255,255,0.08);padding-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${i(t.tagPath)}</div>
+      <div style="margin-top:6px;text-align:right;pointer-events:auto">${f}</div>
+    `;
+  }
+}
+function i(o) {
+  return o.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function l(o, t, e) {
+  return `<div>
+    <div style="font-size:8px;color:${o};font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px">${t}</div>
+    <div style="font-size:10px;color:#fff;font-family:ui-monospace,monospace">${e}</div>
+  </div>`;
+}
+export {
+  w as VanillaFontInspector
+};

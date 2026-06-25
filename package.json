@@ -1,13 +1,40 @@
 {
   "name": "font-inspector",
   "version": "0.1.0",
-  "description": "Hover-based font inspector overlay for React apps — shows family, token, weight, style, size, and line-height of any element.",
+  "description": "Hover-based font inspector overlay for any webpage — shows family, token, weight, style, size, and line-height. Works as a React component, vanilla script tag, or bookmarklet.",
   "type": "module",
+  "exports": {
+    ".": {
+      "import":  "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./vanilla": {
+      "import":  "./dist/vanilla.js",
+      "require": "./dist/vanilla.cjs"
+    },
+    "./iife": "./dist/font-inspector.iife.js"
+  },
+  "main":   "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types":  "./dist/index.d.ts",
+  "files":  ["dist", "src"],
   "scripts": {
-    "dev": "vite --port=3000",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "lint": "tsc --noEmit"
+    "dev":        "vite --port=3000",
+    "build":      "vite build",
+    "build:lib":  "vite build --mode lib",
+    "build:iife": "vite build --mode iife",
+    "build:all":  "npm run build:lib && npm run build:iife && node scripts/bookmarklet.mjs",
+    "bookmarklet":"node scripts/bookmarklet.mjs",
+    "preview":    "vite preview",
+    "lint":       "tsc --noEmit"
+  },
+  "keywords": ["font", "inspector", "devtool", "typography", "react", "vanilla"],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true }
   },
   "dependencies": {
     "react": "^19.0.0",
