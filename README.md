@@ -23,11 +23,54 @@ A font audit tool that lives wherever you need it — browser bookmarklet, React
 
 ## Bookmarklet — any site, no install
 
-Open [`dist/bookmarklet.html`](dist/bookmarklet.html) in your browser. Drag the **⊞ Font Inspector** button to your bookmarks bar.
-
-Click it on any webpage: the inspector activates instantly, overlaying font info on every element you hover. Click it again to toggle off.
+Open [`dist/bookmarklet.html`](dist/bookmarklet.html) in your browser. Drag the **⊞ Font Inspector** button to your bookmarks bar. Click it on any webpage — the inspector activates instantly. Click again to toggle off.
 
 No install. No build step. Works on any site.
+
+### Browser setup
+
+<details>
+<summary><strong>Chrome · Brave · Edge</strong></summary>
+
+1. Show the bookmarks bar: `Cmd+Shift+B` (Mac) or `Ctrl+Shift+B` (Windows)
+2. Open `dist/bookmarklet.html`
+3. Drag **⊞ Font Inspector** to the bar
+
+</details>
+
+<details>
+<summary><strong>Safari</strong></summary>
+
+1. Show the Favorites bar: `View → Show Favorites Bar` or `Cmd+Shift+B`
+2. Open `dist/bookmarklet.html`
+3. Drag **⊞ Font Inspector** to the Favorites bar
+
+> Safari may show a "Are you sure?" prompt when adding a `javascript:` bookmarklet — click **Add** to confirm. It's safe.
+
+</details>
+
+<details>
+<summary><strong>Firefox</strong></summary>
+
+1. Show the bookmarks toolbar: `View → Toolbars → Bookmarks Toolbar`
+2. Open `dist/bookmarklet.html`
+3. Drag **⊞ Font Inspector** to the toolbar
+
+</details>
+
+<details>
+<summary><strong>Arc</strong></summary>
+
+Arc has no bookmarks bar — bookmarks live in the sidebar instead.
+
+1. Open `dist/bookmarklet.html`
+2. Right-click **⊞ Font Inspector** → **Add to Favorites**
+3. It pins to the top of your current Space
+4. Click it from the sidebar just like any pinned link
+
+Alternatively: drag the link directly into the sidebar's Favorites section.
+
+</details>
 
 ---
 
