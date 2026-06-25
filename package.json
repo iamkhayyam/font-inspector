@@ -5,40 +5,56 @@
   "type": "module",
   "exports": {
     ".": {
-      "import":  "./dist/index.js",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
     "./vanilla": {
-      "import":  "./dist/vanilla.js",
+      "import": "./dist/vanilla.js",
       "require": "./dist/vanilla.cjs"
     },
     "./iife": "./dist/font-inspector.iife.js"
   },
-  "main":   "./dist/index.cjs",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "types":  "./dist/index.d.ts",
-  "files":  ["dist", "src"],
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "dev":        "vite --port=3000",
-    "build":      "vite build",
-    "build:lib":  "vite build --mode lib",
+    "dev": "vite --port=3000",
+    "build": "vite build",
+    "build:lib": "vite build --mode lib",
     "build:iife": "vite build --mode iife",
-    "build:all":  "npm run build:lib && npm run build:iife && node scripts/bookmarklet.mjs",
-    "bookmarklet":"node scripts/bookmarklet.mjs",
-    "preview":    "vite preview",
-    "lint":       "tsc --noEmit"
+    "build:mcp": "tsup src/mcp/server.ts --format esm --out-dir dist/mcp --no-splitting --external playwright",
+    "build:all": "npm run build:lib && npm run build:iife && npm run build:mcp && node scripts/bookmarklet.mjs",
+    "bookmarklet": "node scripts/bookmarklet.mjs",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
   },
-  "keywords": ["font", "inspector", "devtool", "typography", "react", "vanilla"],
+  "keywords": [
+    "font",
+    "inspector",
+    "devtool",
+    "typography",
+    "react",
+    "vanilla"
+  ],
   "license": "MIT",
   "peerDependencies": {
     "react": ">=18.0.0"
   },
   "peerDependenciesMeta": {
-    "react": { "optional": true }
+    "react": {
+      "optional": true
+    }
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "playwright": "^1.61.1",
+    "react": ">=18.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.5.1"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
